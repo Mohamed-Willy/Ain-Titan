@@ -6,10 +6,34 @@ using UnityEngine.UI;
 public class AvailbleBuilding : MonoBehaviour
 {
     public static bool chemicals_bl, electric_bl, o2_bl, fe_bl, h2o_bl;
+    public static bool br2_bl, metal_bl, mg_bl, s_bl;
     [SerializeField] private Button chemicals, electric, o2, fe, h2o;
+    [SerializeField] private Button br2, metal, mg, s;
     private void Update()
     {
-        if(Inventory.metal >= 50)
+        if(Inventory.electricity > 5)
+        {
+            br2.image.color = Color.green;
+            metal.image.color = Color.green;
+            mg.image.color = Color.green;
+            s.image.color = Color.green;
+            br2_bl = true;
+            metal_bl = true;
+            mg_bl = true;
+            s_bl = true;
+        }
+        else
+        {
+            br2.image.color = Color.red;
+            metal.image.color = Color.red;
+            mg.image.color = Color.red;
+            s.image.color = Color.red;
+            br2_bl = false;
+            metal_bl = false;
+            mg_bl = false;
+            s_bl = false;
+        }
+        if (Inventory.metal >= 50)
         {
             chemicals.image.color = Color.green;
             chemicals_bl = true;

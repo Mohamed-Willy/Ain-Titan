@@ -1,15 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class ObjectClicked : MonoBehaviour
 {
+    public static float timer = 100;
     public GameObject g, b1, b2, b3, b4, b6;
     public int state = 0;
-    public GameObject panel;
+    public GameObject panel, metal_panel, chemical_panel;
     private void OnMouseDown()
     {
-        if (state == 0)
+        if (panel.activeSelf && metal_panel && chemical_panel)
+        {
+            return;
+        }
+        // Ground
+        if (state == 0) 
         {
             panel.SetActive(true);
             BuildingButtons.g = g;
@@ -20,6 +27,16 @@ public class ObjectClicked : MonoBehaviour
             BuildingButtons.b6 = b6;
             BuildingButtons.obj = this;
             BuildingButtons.panel = panel;
+        }
+        // Metal
+        else if (state == 2)
+        {
+            metal_panel.SetActive(true);
+        }
+        // Chemicals
+        else if (state == 4) 
+        {
+            chemical_panel.SetActive(true);
         }
     }
 }
